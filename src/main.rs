@@ -68,10 +68,10 @@ fn main() -> anyhow::Result<()> {
             .filter(|e| e.file_type().is_file())
         {
             let path = entry.path();
-            if let Some(g) = &glob_ok {
-                if !g.is_match(path) {
-                    continue;
-                }
+            if let Some(g) = &glob_ok
+                && !g.is_match(path)
+            {
+                continue;
             }
 
             let text = std::fs::read_to_string(path)?;
